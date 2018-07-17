@@ -1,5 +1,5 @@
 1.
-SELECT * FROM usairlineflights.flights;
+SELECT COUNT(*) FROM usairlineflights.flights;
 
 2.
 select f.Origin, AVG(f.ArrDelay) as RetardoMediaLlegada, AVG(f.DepDelay) as RetardoMediaSalida

@@ -1,0 +1,39 @@
+1.
+select count(*) from flights
+
+2.
+select AVG(f.ArrDelay) as RetardoMediaLlegada, AVG(f.DepDelay) as RetardoMediaSalida, f.Origin
+from flights f 
+group by f.Origin
+
+3.
+select f.Origin, f.colYear, f.colMonth, AVG(f.ArrDelay) as RetardoMediaLlegada 
+from flights f 
+group by f.Origin, f.colMonth
+
+4.
+select u.City, f.colYear, f.colMonth, AVG(f.ArrDelay) as RetardoMediaLlegada 
+from flights f, usairports u where f.Origin=u.IATA
+group by u.IATA, f.colMonth
+
+5.
+select c.Description, f.Cancelled
+from carriers c, flights f
+where c.CarrierCode=f.UniqueCarrier
+order by f.Cancelled desc
+
+6.
+select
+f.TailNum, SUM(f.Distance) as "Distance"
+from flights f
+group by f.TailNum
+order by SUM(f.Distance) desc
+limit 10
+
+7.
+select c.Description, f.Origin, f.Dest
+from carriers c, flights f
+where c.CarrierCode=f.UniqueCarrier 
+group by f.Origin, f.Dest
+having AVG(f.ArrDelay) > 10
+
